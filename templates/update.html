@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.1/dist/jquery.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+    {% load static %}
+    <style>
+    .container-fluid{
+    background-image: url('{% static "image/bg5.jpeg" %}');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.card{
+    width: 500px;
+    /* margin: auto; */
+    margin-right: 200px;
+    margin-left: 200px;
+    margin-top: 20px;
+    border-radius: 50px;
+    background-color: rgba(168, 97, 97, 0.836);
+    border-radius: 50px;
+    /* opacity: 80%; */
+   
+   }
+   .sub{
+    text-align: center;
+   }
+   .card-body{
+    color:  rgb(10, 10, 10);
+   }
+   .navbar{
+    border-radius: 10px;
+    height: 50px;
+    
+   }
+    </style>
+
+</head>
+<nav class="navbar navbar-expand-lg " style="background-color: #043d11;">
+    <a class="navbar-brand" href="#"></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+  
+    <div class="collapse navbar-collapse navbar navbar-expand-sm " id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto nav-pills">
+            <li class="nav-item active">
+                <a class="nav-link text-danger {% if url_name == 'product' %}active{% endif %}" href="{% url 'home' %}">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-danger{% if url_name == 'product' %}active{% endif %}" href="{% url 'show_details' %}">View Products</a>
+            </li>
+  
+          
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-danger my-2 my-sm-0" type="submit">Search</button>
+        </form>
+    </div>
+  </nav><br><br>
+
+<body class="container-fluid">
+    <h1 style="text-align: center;color: rgba(44, 5, 5, 0.993);font-family: algerian;">UPDATE STUDENT DETAILS</h1>
+    <div class="card">
+    <div class="card-body ">
+    <div class="outform">
+    <form action="{% url 'update_student_details' stud.id %}" method="post" enctype="multipart/form-data">
+     {% csrf_token %}
+     <div class="form-group">
+     <label for="">First Name</label>
+     <input class="form-control" type="text" name="fname" value="{{ stud.student_fname }}"><br>
+    </div>
+    <div class="form-group">
+        <label for="">Last Name</label>
+        <input class="form-control" type="text" name="lname" value="{{ stud.student_lname }}"><br>
+       </div>
+    <div class="form-group">
+     <label for="">Age</label>
+     <input class="form-control" type="text" name="age" value="{{ stud.age}}"><br>
+    </div>
+    
+    <!-- <div class="form-group">
+        <label for="" >Gender : </label><br>
+        
+
+        <input type="radio" id="m" name="gender" value="{{ stud.gender}}">
+        <label for="m">Male</label>
+        <input type="radio" id="f" name="gender" value="{{ stud.gender}}">
+        <label for="f">Female</label>
+        <input type="radio" id="o" name="gender" value="{{ stud.gender}}">
+        <label for="o">Others</label><br><br>
+
+       </div> -->
+       <!-- <tr>
+        <td>Gender</td>
+        <td>
+            <select class="form-control" name="gender">
+                <option value="Male" {% if stud.gender == "Male" %}selected{% endif %}>Male</option>
+                <option value="Female" {% if stud.gender == "Female" %}selected{% endif %}>Female</option>
+                <option value="Others" {% if stud.gender == "Others" %}selected{% endif %}>Others</option>
+            </select>
+        </td>
+    </tr> -->
+    <tr>
+        <td>Gender</td>
+        <td>
+           
+            <label for="m" class="option">
+                <input type="radio" name="gender" id="m" value="Male" {% if stud.gender == "Male" %}checked{% endif %}>Male</input>
+            </label>
+            <label for="f" class="option">
+                <input type="radio" name="gender" id="f" value="Female" {% if stud.gender == "Female" %}checked{% endif %}>Female</input>
+            </label>
+            <label for="o" class="option">
+                <input type="radio" name="gender" id="o" value="Others" {% if stud.gender == "Others" %}checked{% endif %}>Others</input>
+            </label>
+           
+        </td>
+    </tr>
+
+
+       <!-- <h6>GENDER:</h6>
+                            <input type="text" name="gender" class="form-control mt-3" value="{{ stud.gender }}"> -->
+       <!-- <div class="form-group">
+       <label for="qualification">Choose Qualification:</label>
+
+       <select name="qualification" id="qualification"  value="{{ stud.qualification}}">
+        <option value="" style="font-family: 'Times New Roman', Times, serif;" selected hidden>Choose Option</option>
+       <option value="bca">BCA</option>
+       <option value="mca">MCA</option>
+       <option value="msw">MSW</option>
+       <option value="bsw">BSW</option>
+       <option value="btech">Btech</option>
+       <option value="mtech">Mtech</option>
+       <option value="bcom">BCom</option>
+       <option value="mcom">MCom</option>
+       </select>
+    </div> -->
+
+
+    <!-- <div class=" my-md-2 my-3">
+        <label>Qualification:</label>
+        <select id="qlification" required name="qualification" value="{{stud.qualification}}">
+        <option value="" selected hidden>Choose Option</option>
+        <option value="BCA" {% if stud.qualification == "BCA" %}selected{% endif %} >BCA</option>
+        <option value="MCA" {% if stud.qualification == "MCA" %}selected{% endif %}>MCA</option>
+        <option value="MSW" {% if stud.qualification == "MSW" %}selected{% endif %}>MSW</option>
+        <option value="BSW" {% if stud.qualification == "BSW" %}selected{% endif %}>BSW</option>
+        <option value="Btech" {% if stud.qualification == "Btech" %}selected{% endif %}>Btech</option>
+        <option value="Mtech" {% if stud.qualification == "Mtech" %}selected{% endif %}>Mtech</option>
+        <option value="BCom" {% if stud.qualification == "BCom" %}selected{% endif %}>BCom</option>
+        <option value="MCom" {% if stud.qualification == "MCom" %}selected{% endif %}>MCom</option>
+        </select>  
+    </div>  -->
+
+
+    <div class="my-md-2 my-3">
+        <label>Qualification:</label>
+        <select id="qualification" required name="qualification">
+            <option value="" selected hidden>Choose Option</option>
+            <option value="BCA" {% if stud.qualification == "BCA" %}selected{% endif %}>BCA</option>
+            <option value="MCA" {% if stud.qualification == "MCA" %}selected{% endif %}>MCA</option>
+            <option value="MSW" {% if stud.qualification == "MSW" %}selected{% endif %}>MSW</option>
+            <option value="BSW" {% if stud.qualification == "BSW" %}selected{% endif %}>BSW</option>
+            <option value="Btech" {% if stud.qualification == "Btech" %}selected{% endif %}>Btech</option>
+            <option value="Mtech" {% if stud.qualification == "Mtech" %}selected{% endif %}>Mtech</option>
+            <option value="BCom" {% if stud.qualification == "BCom" %}selected{% endif %}>BCom</option>
+            <option value="MCom" {% if stud.qualification == "MCom" %}selected{% endif %}>MCom</option>
+        </select>  
+    </div>
+
+
+
+<!-- checkbox -->
+
+    <!-- <div class=" my-md-2 my-3">
+        <label>Extracurricular Activities</label>
+         <div class="d-flex align-items-center mt-3">
+          <div class="form-check form-check-inline">
+           <input class="form-check-input" type="checkbox" id="inlineCheckbox1" name="extra" value="Sports" {% if "Sports" in new_update.Extracurricular_Activities %}checked{% endif %}/>
+           <label class="form-check-label" for="inlineCheckbox1">Sports</label>
+         </div>
+         <div class="form-check form-check-inline">
+           <input class="form-check-input" type="checkbox" id="inlineCheckbox2" name="extra" value="Entertainment" {% if "Entertainment" in new_update.Extracurricular_Activities %}checked{% endif %}/>
+           <label class="form-check-label" for="inlineCheckbox2">Entertainment</label>
+         </div> 
+         <div class="form-check form-check-inline">
+           <input class="form-check-input" type="checkbox" id="inlineCheckbox2" name="extra" value="Art" {% if "Art" in new_update.Extracurricular_Activities %}checked{% endif %} />
+           <label class="form-check-label" for="inlineCheckbox2">Art</label>
+         </div>
+         </div>
+     </div> -->
+
+
+    
+    <div class="form-group">
+    <h6>Student Image :</h6>
+
+    {% if stud.image %}
+    <img src="{{stud.image.url }}" alt="{{ stud.student_fname  }}'s Profile Picture" class="w-25">
+    {% else %}
+    <img src="{% static 'image/icon.png' %}" alt="Default Profile Picture">
+    {% endif %}
+
+
+    
+
+    <input type="file" name="file" class="form-control mt-3" accept="image/*"  value="{{ stud.image }}">
+</div>
+    <div class="sub">
+    <div class="form-group">
+     <Button class="btn btn-danger" type="submit">Update</Button>
+    </div>
+</div>
+</div>
+</div>
+</div>
+    </form>
+</body>
+</html>
